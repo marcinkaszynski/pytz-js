@@ -1,0 +1,4 @@
+A simple timezone conversion library for Javascript.
+Based heavily on pytz.
+
+MIT license, same as pytz.
