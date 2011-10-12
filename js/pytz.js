@@ -14,7 +14,12 @@ var Tz = {
         // This is a counterpart to StaticTzInfo.fromutc.
         this.fromDate = function (date) {
             var tsk = Tz.dateToUnixTsk(date);
-            return Tz.utcPartAsDict(new Date(tsk + this.utcOffset * 1000));
+            return Tz.utcToDict(new Date(tsk + this.utcOffset * 1000));
+        };
+
+        this.toDate = function (date_dict) {
+            var date = Tz.dictToUtc(date_dict, -this.utcOffset * 1000);
+            return date;
         };
 
         return this;
@@ -49,22 +54,27 @@ var Tz = {
         this.fromDate = function (date) {
             var tsk = Tz.dateToUnixTsk(date);
             var idx = Math.max(0, this.getRightTransitionInfo(tsk));
-            return Tz.utcPartAsDict(new Date(tsk + this.transitionInfo[idx][0] * 1000));
+            return Tz.utcToDict(new Date(tsk + this.transitionInfo[idx][0] * 1000));
         };
     },
 
     localToDate: function (tzname, date_dict) {
-        return {};
+        var tz = Tz.getTzinfo(tzname);
+        return tz.toDate(date_dict);
     },
 
     dateToLocal: function (tzname, date) {
-        // TODO: raise an exception on missing tz
-        var tz = Tz.timezones[tzname];
+        var tz = Tz.getTzinfo(tzname);
         return tz.fromDate(date);
     },
 
+    getTzinfo: function (tzname) {
+        // TODO: raise an exception on missing tz
+        return Tz.timezones[tzname];
+    },
+
     // Return the UTC part of date as a dictionary.
-    utcPartAsDict: function (date) {
+    utcToDict: function (date) {
         return {year: date.getUTCFullYear(),
                 month: date.getUTCMonth(),
                 date: date.getUTCDate(),
@@ -72,6 +82,17 @@ var Tz = {
                 minutes: date.getUTCMinutes(),
                 seconds: date.getUTCSeconds(),
                 milliseconds: date.getUTCMilliseconds()};
+    },
+
+    // Reverse of utcToDict.
+    dictToUtc: function (date_dict, shift) {
+        return new Date(Date.UTC(date_dict.year,
+                                 date_dict.month,
+                                 date_dict.date,
+                                 date_dict.hours,
+                                 date_dict.minutes,
+                                 date_dict.seconds,
+                                 date_dict.milliseconds) + (shift || 0));
     },
 
     // Convert date to unix ts multiplied by 1k to account for the milliseconds.
