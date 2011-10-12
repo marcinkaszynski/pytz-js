@@ -1,0 +1,1 @@
+Tz.addTzInfo(new Tz.StaticTzInfo('Pacific/Truk', 36000))

@@ -1,0 +1,1 @@
+Tz.addTzInfo(new Tz.StaticTzInfo('Pacific/Palau', 32400))

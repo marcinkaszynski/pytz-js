@@ -1,0 +1,1 @@
+Tz.addTzInfo(new Tz.StaticTzInfo('Africa/Lome', 0))
