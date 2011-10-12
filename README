@@ -2,3 +2,48 @@ A simple timezone conversion library for Javascript.
 Based heavily on pytz.
 
 MIT license, same as pytz.
+
+----------------------------------------
+
+The base plan is to allow basic timezone conversions:
+
+<script src="{{ STATIC_URL }}js/pytz.js"></script>
+<script src="{{ STATIC_URL }}js/zones/europe/warsaw.js"></script>
+<script src="{{ STATIC_URL }}js/zones/america/new_york.js"></script>
+[... other time zones you need]
+<script>
+    // Create a date representing the time.
+    // All fields in the dictionary are required except:
+    // - millisecond: defaults to 0
+    // - is_dst: is required only if you specify ambiguous times
+    //   during time change (when you switch off DST there is an hour
+    //   when every moment occurs twice, once before the switch and 
+    //   once after); if you do that without telling is_dst, localToDate
+    //   will raise an exception (TODO: what exception?)
+    var localTime = {year: 2011, month: 10, date: 11,
+                     hour: 22, minute: 34, second: 50,
+                     millisecond: 120, is_dst: True};
+    var date = Tz.localToDate('Europe/Warsaw', localTime);
+
+    // Note: date.getHours(), date.getDays() etc WILL BE DIFFERENT
+    // from fields in localTime if your system/browser timezone is
+    // different than localTime.tz.  That's because localToDate
+    // creates a date that represents the requested moment in time,
+    // which means different representations in different timezones.
+    // Use Tz.dateToLocal to get back the date and time in your chosen
+    // timezone:
+    var localTime_back = Tz.dateToLocal('Europe/Warsaw', date);
+    
+    // Now localTime_back == localTime.
+</script>
+
+NOTES:
+
+- pytz handles some dates before unix epoch start (1970-1-1), but for
+  the time being I'm throwing those away.  Do not use this library for
+  dates outside of current unix time range (1970-1-1 to 2038-01-19
+  UTC).
+
+- JS Date-related API is braindead in many ways, one of them calling
+  day-of-month a 'date'.  I'm keeping my API consistent with it, at
+  least for the time being.
