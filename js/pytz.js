@@ -3,7 +3,6 @@ var Tz = {
 
     addTzInfo: function (tzinfo) {
         Tz.timezones[tzinfo.tzname] = tzinfo;
-        console.log('added', tzinfo.tzname);
     },
 
     // Constructor for a timezone that never changed its offset to
@@ -38,9 +37,10 @@ var Tz = {
 
         this.getRightTransitionInfo = function (unix_tsk) {
             var i;
-            for (i = 0; i < len(this.utcTransitionTimes); i++) {
-                if (this.utcTransitionTimes[i][0] <= unix_tsk) {
-                    return i;
+            var unix_ts = unix_tsk / 1000;
+            for (i = 0; i < this.utcTransitionTimes.length; i++) {
+                if (this.utcTransitionTimes[i] > unix_ts) {
+                    return i - 1;
                 }
             }
             return -1;
@@ -49,7 +49,7 @@ var Tz = {
         this.fromDate = function (date) {
             var tsk = Tz.dateToUnixTsk(date);
             var idx = Math.max(0, this.getRightTransitionInfo(tsk));
-            return Tz.utcPartAsDict(new Date(tsk + this.transitionInfo[idx][0]));
+            return Tz.utcPartAsDict(new Date(tsk + this.transitionInfo[idx][0] * 1000));
         };
     },
 
