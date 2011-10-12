@@ -1,15 +1,20 @@
-A simple timezone conversion library for Javascript.
+A simple timezone support library for Javascript.
 Based heavily on pytz.
 
 MIT license, same as pytz.
 
-----------------------------------------
+------------------------------------------------------------------------------
 
-The base plan is to allow basic timezone conversions:
+The goal of this library is to make two things easy:
+
+- convert a Date to a chosen timezone,
+- build a Date based on local time in a chosen timezone.a
+
+Example:
 
 <script src="{{ STATIC_URL }}js/pytz.js"></script>
-<script src="{{ STATIC_URL }}js/zones/europe/warsaw.js"></script>
-<script src="{{ STATIC_URL }}js/zones/america/new_york.js"></script>
+<script src="{{ STATIC_URL }}js/zones/Europe/Warsaw.js"></script>
+<script src="{{ STATIC_URL }}js/zones/America/New_york.js"></script>
 [... other time zones you need]
 <script>
     // Create a date representing the time.
@@ -22,7 +27,7 @@ The base plan is to allow basic timezone conversions:
     //   will raise an exception (TODO: what exception?)
     var localTime = {year: 2011, month: 10, date: 11,
                      hour: 22, minute: 34, second: 50,
-                     millisecond: 120, is_dst: True};
+                     millisecond: 120};
     var date = Tz.localToDate('Europe/Warsaw', localTime);
 
     // Note: date.getHours(), date.getDays() etc WILL BE DIFFERENT
@@ -44,6 +49,6 @@ NOTES:
   dates outside of current unix time range (1970-1-1 to 2038-01-19
   UTC).
 
-- JS Date-related API is braindead in many ways, one of them calling
-  day-of-month a 'date'.  I'm keeping my API consistent with it, at
-  least for the time being.
+- JS Date-related API is braindead in many ways, but by now a lot of
+  people are used to its quirks so I'm keeping my API consistent with
+  it.
