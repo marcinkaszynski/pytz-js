@@ -15,7 +15,7 @@ var Tz = {
         // This is a counterpart to StaticTzInfo.fromutc.
         this.fromDate = function (date) {
             var tsk = Tz.dateToUnixTsk(date);
-            return Tz.utcPartAsDict(new Date(tsk + this.utcOffset));
+            return Tz.utcPartAsDict(new Date(tsk + this.utcOffset * 1000));
         };
 
         return this;
