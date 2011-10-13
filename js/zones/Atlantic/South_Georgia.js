@@ -1,1 +1,1 @@
-Tz.addTzInfo(new Tz.StaticTzInfo('Atlantic/South_Georgia', -7200))
+Tz.addTzInfo('Atlantic/South_Georgia', new Tz.StaticTzInfo(-7200))

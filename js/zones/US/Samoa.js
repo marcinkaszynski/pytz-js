@@ -1,3 +1,3 @@
-Tz.addTzInfo(new Tz.DstTzInfo('US/Samoa', [439034400],
+Tz.addTzInfo('US/Samoa', new Tz.DstTzInfo([439034400],
  [[-40980, 0, 'LMT'], [-41400, 0, 'SAMT'], [-39600, 0, 'NST'], [-39600, 0, 'BST'], [-39600, 0, 'SST']],
  0))

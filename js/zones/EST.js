@@ -1,1 +1,1 @@
-Tz.addTzInfo(new Tz.StaticTzInfo('EST', -18000))
+Tz.addTzInfo('EST', new Tz.StaticTzInfo(-18000))

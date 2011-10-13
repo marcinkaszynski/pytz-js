@@ -1,1 +1,1 @@
-Tz.addTzInfo(new Tz.StaticTzInfo('Etc/Greenwich', 0))
+Tz.addTzInfo('Etc/Greenwich', new Tz.StaticTzInfo(0))

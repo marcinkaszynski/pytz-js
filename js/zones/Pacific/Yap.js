@@ -1,1 +1,1 @@
-Tz.addTzInfo(new Tz.StaticTzInfo('Pacific/Yap', 36000))
+Tz.addTzInfo('Pacific/Yap', new Tz.StaticTzInfo(36000))

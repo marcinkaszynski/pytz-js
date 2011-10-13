@@ -1,1 +1,1 @@
-Tz.addTzInfo(new Tz.StaticTzInfo('Etc/Universal', 0))
+Tz.addTzInfo('Etc/Universal', new Tz.StaticTzInfo(0))

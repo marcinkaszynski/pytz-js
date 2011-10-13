@@ -1,1 +1,1 @@
-Tz.addTzInfo(new Tz.StaticTzInfo('Indian/Cocos', 23400))
+Tz.addTzInfo('Indian/Cocos', new Tz.StaticTzInfo(23400))

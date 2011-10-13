@@ -1,1 +1,1 @@
-Tz.addTzInfo(new Tz.StaticTzInfo('Pacific/Wallis', 43200))
+Tz.addTzInfo('Pacific/Wallis', new Tz.StaticTzInfo(43200))

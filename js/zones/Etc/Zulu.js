@@ -1,1 +1,1 @@
-Tz.addTzInfo(new Tz.StaticTzInfo('Etc/Zulu', 0))
+Tz.addTzInfo('Etc/Zulu', new Tz.StaticTzInfo(0))

@@ -1,3 +1,3 @@
-Tz.addTzInfo(new Tz.DstTzInfo('Africa/Sao_Tome', [],
+Tz.addTzInfo('Africa/Sao_Tome', new Tz.DstTzInfo([],
  [[-2220, 0, 'LMT'], [0, 0, 'GMT']],
  0))

@@ -1,3 +1,3 @@
-Tz.addTzInfo(new Tz.DstTzInfo('US/Arizona', [],
+Tz.addTzInfo('US/Arizona', new Tz.DstTzInfo([],
  [[-25200, 0, 'MST'], [-21600, 3600, 'MDT'], [-25200, 0, 'MST'], [-21600, 3600, 'MDT'], [-25200, 0, 'MST'], [-21600, 3600, 'MWT'], [-25200, 0, 'MST'], [-21600, 3600, 'MWT'], [-25200, 0, 'MST'], [-21600, 3600, 'MDT'], [-25200, 0, 'MST']],
  0))

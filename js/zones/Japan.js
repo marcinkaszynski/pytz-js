@@ -1,3 +1,3 @@
-Tz.addTzInfo(new Tz.DstTzInfo('Japan', [],
+Tz.addTzInfo('Japan', new Tz.DstTzInfo([],
  [[32400, 0, 'CJT'], [32400, 0, 'JST'], [36000, 3600, 'JDT'], [32400, 0, 'JST'], [36000, 3600, 'JDT'], [32400, 0, 'JST'], [36000, 3600, 'JDT'], [32400, 0, 'JST'], [36000, 3600, 'JDT'], [32400, 0, 'JST']],
  0))

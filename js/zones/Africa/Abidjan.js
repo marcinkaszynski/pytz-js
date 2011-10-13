@@ -1,3 +1,3 @@
-Tz.addTzInfo(new Tz.DstTzInfo('Africa/Abidjan', [],
+Tz.addTzInfo('Africa/Abidjan', new Tz.DstTzInfo([],
  [[-960, 0, 'LMT'], [0, 0, 'GMT']],
  0))

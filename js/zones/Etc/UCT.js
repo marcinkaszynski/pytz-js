@@ -1,1 +1,1 @@
-Tz.addTzInfo(new Tz.StaticTzInfo('Etc/UCT', 0))
+Tz.addTzInfo('Etc/UCT', new Tz.StaticTzInfo(0))

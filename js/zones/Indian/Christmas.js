@@ -1,1 +1,1 @@
-Tz.addTzInfo(new Tz.StaticTzInfo('Indian/Christmas', 25200))
+Tz.addTzInfo('Indian/Christmas', new Tz.StaticTzInfo(25200))

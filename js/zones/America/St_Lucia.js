@@ -1,3 +1,3 @@
-Tz.addTzInfo(new Tz.DstTzInfo('America/St_Lucia', [],
+Tz.addTzInfo('America/St_Lucia', new Tz.DstTzInfo([],
  [[-14640, 0, 'CMT'], [-14400, 0, 'AST']],
  0))

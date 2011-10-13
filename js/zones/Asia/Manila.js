@@ -1,3 +1,3 @@
-Tz.addTzInfo(new Tz.DstTzInfo('Asia/Manila', [259340400, 275144400],
+Tz.addTzInfo('Asia/Manila', new Tz.DstTzInfo([259340400, 275144400],
  [[28800, 0, 'PHT'], [32400, 3600, 'PHST'], [28800, 0, 'PHT'], [32400, 0, 'JST'], [28800, 0, 'PHT'], [32400, 3600, 'PHST'], [28800, 0, 'PHT'], [32400, 3600, 'PHST'], [28800, 0, 'PHT']],
  0))

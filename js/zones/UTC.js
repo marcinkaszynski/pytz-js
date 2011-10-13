@@ -1,1 +1,1 @@
-Tz.addTzInfo(new Tz.StaticTzInfo('UTC', 0))
+Tz.addTzInfo('UTC', new Tz.StaticTzInfo(0))

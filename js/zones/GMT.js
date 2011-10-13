@@ -1,1 +1,1 @@
-Tz.addTzInfo(new Tz.StaticTzInfo('GMT', 0))
+Tz.addTzInfo('GMT', new Tz.StaticTzInfo(0))
