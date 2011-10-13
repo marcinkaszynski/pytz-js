@@ -3,6 +3,12 @@ Based heavily on pytz.
 
 MIT license, same as pytz.
 
+Current status: the library is in early stage of development and not
+fully functional yet.  In particular, it does not yet properly react
+to non-existant local times (gaps when switching DST off).
+
+That said, feel free to check it out and see if it works for you.
+
 ------------------------------------------------------------------------------
 
 The goal of this library is to make two things easy:
