@@ -105,19 +105,6 @@ pavlov.specify('pytz-js', function () {
             assert(date.seconds).equals(0);
             assert(date.milliseconds).equals(0);
         });
-
-        it('Works well for US/Pacific border case #3', function () {
-            // It's a partial test from pytz's localize.
-            var date = Tz.dateToLocal('US/Pacific',
-                                      new Date(1205056800 * 1000));
-            assert(date.year).equals(2008);
-            assert(date.month).equals(2);
-            assert(date.date).equals(9);
-            assert(date.hours).equals(3);
-            assert(date.minutes).equals(0);
-            assert(date.seconds).equals(0);
-            assert(date.milliseconds).equals(0);
-        });
     });
 
     describe('Tz.localToDate', function () {
