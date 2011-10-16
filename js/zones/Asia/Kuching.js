@@ -1,3 +1,3 @@
-Tz.addTzInfo('Asia/Kuching', new Tz.DstTzInfo([378658800],
+Tz.addTzInfo('Asia/Kuching', new Tz.DstTzInfo([378662400],
  [[26460, 0, 'LMT'], [27000, 0, 'BORT'], [28800, 0, 'BORT'], [30000, 1200, 'BORTST'], [28800, 0, 'BORT'], [30000, 1200, 'BORTST'], [28800, 0, 'BORT'], [30000, 1200, 'BORTST'], [28800, 0, 'BORT'], [30000, 1200, 'BORTST'], [28800, 0, 'BORT'], [30000, 1200, 'BORTST'], [28800, 0, 'BORT'], [30000, 1200, 'BORTST'], [28800, 0, 'BORT'], [30000, 1200, 'BORTST'], [28800, 0, 'BORT'], [32400, 0, 'JST'], [28800, 0, 'BORT'], [28800, 0, 'MYT']],
  0))

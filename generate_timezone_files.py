@@ -9,14 +9,14 @@ all the work on parsing Olson data files.
 import os
 import os.path
 import pytz
-import time
+import calendar
 from pytz.tzinfo import StaticTzInfo, DstTzInfo
 
 def delta_to_seconds(delta):
     return delta.days * 86400 + delta.seconds
 
 def date_to_unixts(date):
-    return time.mktime(date.timetuple())
+    return calendar.timegm(date.utctimetuple())
 
 def dump_tzinfo(tzname):
     tz = pytz.timezone(tzname)

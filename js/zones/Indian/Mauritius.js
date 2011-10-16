@@ -1,3 +1,3 @@
-Tz.addTzInfo('Indian/Mauritius', new Tz.DstTzInfo([403038000, 417031200, 1224964800, 1238270400],
+Tz.addTzInfo('Indian/Mauritius', new Tz.DstTzInfo([403041600, 417034800, 1224972000, 1238274000],
  [[13800, 0, 'LMT'], [14400, 0, 'MUT'], [18000, 3600, 'MUST'], [14400, 0, 'MUT'], [18000, 3600, 'MUST'], [14400, 0, 'MUT']],
  0))
