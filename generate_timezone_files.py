@@ -22,13 +22,15 @@ def dump_tzinfo(tzname):
     tz = pytz.timezone(tzname)
 
     if issubclass(type(tz), DstTzInfo):
-        return ("new Tz.DstTzInfo(%s,\n %s,\n %s)"
-                % ([int(date_to_unixts(tt))
-                    for tt in tz._utc_transition_times
-                    if tt.year >= 1970],
-                   [[delta_to_seconds(utcoffset), delta_to_seconds(dstoffset), tzname]
-                    for (utcoffset, dstoffset, tzname) in tz._transition_info],
-                   delta_to_seconds(tz._dst)))
+        trans_times = []
+        trans_info = []
+        for idx, tt in enumerate(tz._utc_transition_times):
+            if tt.year >= 1970:
+                trans_times.append(int(date_to_unixts(tt)))
+                (utcoffset, dstoffset, tzname) = tz._transition_info[idx]
+                trans_info.append([delta_to_seconds(utcoffset), delta_to_seconds(dstoffset), tzname])
+        return ("new Tz.DstTzInfo(%s,\n %s)"
+                % (trans_times, trans_info))
     else:
         return ("new Tz.StaticTzInfo(%s)"
                 % (delta_to_seconds(tz._utcoffset)))

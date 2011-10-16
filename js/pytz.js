@@ -39,8 +39,7 @@ var Tz = {
     //   present in pytz: utcTransitionTimes and transitionInfo.
     //   That's because pytz initializes those class fields outside of
     //   constructor.
-    DstTzInfo: function (utcTransitionTimes, transitionInfo,
-                         _inf, _tzinfos) {
+    DstTzInfo: function (utcTransitionTimes, transitionInfo) {
         this.utcTransitionTimes = utcTransitionTimes;
         this.transitionInfo = transitionInfo;
 
@@ -59,13 +58,10 @@ var Tz = {
             var tsk = Tz.dateToUnixTsk(date);
             if (utcoffset === undefined) {
                 var idx = Math.max(0, this.getRightTransitionInfo(tsk));
-                utcoffset = this.transitionInfo[idx][0];
+                var inf = this.transitionInfo[idx];
+                utcoffset = inf[0];
             }
             return Tz.utcToDict(new Date(tsk + utcoffset * 1000));
-        };
-
-        this.normalize = function (date) {
-            return this.fromDate(date);
         };
 
         // Based DstTzInfo.localize.
@@ -94,7 +90,7 @@ var Tz = {
 
                 // inf[0] is utcoffset
                 loc_dt = new Date(dt_tsk - inf[0] * 1000);
-                if (Tz.areDateDictsEqual(this.fromDate(loc_dt, inf[0]), date_dict)) {
+                if (Tz.areDateDictsEqual(this.fromDate(loc_dt), date_dict)) {
                     possible_loc_dt.push({dt: loc_dt,
                                           dstoffset: inf[1],
                                           tzname: inf[2]});
@@ -122,29 +118,28 @@ var Tz = {
                 // unable to properly test the code below in this
                 // branch properly, I'm cutting it short and throwing
                 // an exception for now.
-                throw "NonExistentTimeError";
 
-//                // If we refuse to guess, raise an exception.
-//                if (is_dst === null) {
-//                    throw "NonExistentTimeError";
-//                }
-//                // If we are forcing the pre-DST side of the DST transition, we
-//                // obtain the correct timezone by winding the clock forward a few
-//                // hours.
-//                else if (is_dst) {
-//                    // 6 hours -- the exact value doesn't matter.
-//                    var delta = 6 * 3600000;
-//                    return Tz.shiftDate(this.toDate(Tz.shiftDict(date_dict, delta), is_dst),
-//                                        -delta);
-//                }    
-//                // If we are forcing the post-DST side of the DST transition, we
-//                // obtain the correct timezone by winding the clock back.
-//                else {
-//                    // 6 hours -- the exact value doesn't matter.
-//                    var delta = 6 * 3600000;
-//                    return Tz.shiftDate(this.toDate(Tz.shiftDict(date_dict, -delta), is_dst),
-//                                        delta);
-//                };
+                // If we refuse to guess, raise an exception.
+                if (is_dst === null) {
+                    throw "NonExistentTimeError";
+                }
+                // If we are forcing the pre-DST side of the DST transition, we
+                // obtain the correct timezone by winding the clock forward a few
+                // hours.
+                else if (is_dst) {
+                    // 6 hours -- the exact value doesn't matter.
+                    var delta = 6 * 3600000;
+                    return Tz.shiftDate(this.toDate(Tz.shiftDict(date_dict, delta), is_dst),
+                                        -delta);
+                }    
+                // If we are forcing the post-DST side of the DST transition, we
+                // obtain the correct timezone by winding the clock back.
+                else {
+                    // 6 hours -- the exact value doesn't matter.
+                    var delta = 6 * 3600000;
+                    return Tz.shiftDate(this.toDate(Tz.shiftDict(date_dict, -delta), is_dst),
+                                        delta);
+                };
             }
 
             // If we get this far, we have multiple possible timezones - this
@@ -235,6 +230,16 @@ var Tz = {
                                  date_dict.minutes,
                                  date_dict.seconds,
                                  date_dict.milliseconds) + (shift || 0));
+    },
+
+    dictToString: function (date_dict) {
+        return ("" + date_dict.year + "-"
+                + date_dict.month + "-"
+                + date_dict.date + " "
+                + date_dict.hours + ":"
+                + date_dict.minutes + ":"
+                + date_dict.seconds
+                + (date_dict.milliseconds ? "." + date_dict.milliseconds : ""));
     },
 
     // Convert date to unix ts multiplied by 1k to account for the milliseconds.
