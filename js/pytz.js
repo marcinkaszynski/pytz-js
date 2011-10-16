@@ -179,11 +179,13 @@ var Tz = {
             //
             // Choose the earliest (by UTC) applicable timezone.
             //
-            // TODO: finish porting it.
-            //            
+            // TODO: finish porting it.  For the time being, throw an exception.
+
+            throw "AmbiguousTimeError";
+
             // Marcin's note: this part of tzinfo.localize looks like
             // a complicated way of selecting the value with the
-            // higher utcoffset.  I'll simplify it.
+            // higher utcoffset.  Simplify it.
 
 //            sorting_keys = {}
 //            for local_dt in filtered_possible_loc_dt:

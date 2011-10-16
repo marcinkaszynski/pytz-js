@@ -16,6 +16,9 @@ The goal of this library is to make two things easy:
 - convert a Date to a chosen timezone,
 - build a Date based on local time in a chosen timezone.a
 
+The core idea is that the right way to store a timestamp is in a Date,
+as UTC, always.  Timestamps in other timezones are just presentation.
+
 Example:
 
 <script src="{{ STATIC_URL }}js/pytz.js"></script>
@@ -30,7 +33,7 @@ Example:
     //   during time change (when you switch off DST there is an hour
     //   when every moment occurs twice, once before the switch and 
     //   once after); if you do that without telling is_dst, localToDate
-    //   will raise an exception (TODO: what exception?)
+    //   will throw "AmbiguousTimeError"
     var localTime = {year: 2011, month: 10, date: 11,
                      hour: 22, minute: 34, second: 50,
                      millisecond: 120};
@@ -57,4 +60,5 @@ NOTES:
 
 - JS Date-related API is braindead in many ways, but by now a lot of
   people are used to its quirks so I'm keeping my API consistent with
-  it.
+  it.  It means, in particular, that months are in the 0..11 range
+  while days of month are 1..31 (and are called 'date').
