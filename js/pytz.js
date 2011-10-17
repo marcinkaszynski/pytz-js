@@ -231,7 +231,7 @@ var Tz = {
                                  date_dict.hours,
                                  date_dict.minutes,
                                  date_dict.seconds,
-                                 date_dict.milliseconds) + (shift || 0));
+                                 (date_dict.milliseconds || 0)) + (shift || 0));
     },
 
     dictToString: function (date_dict) {
@@ -262,7 +262,7 @@ var Tz = {
                 && (date_dict_a.hours === date_dict_b.hours)
                 && (date_dict_a.minutes === date_dict_b.minutes)
                 && (date_dict_a.seconds === date_dict_b.seconds)
-                && (date_dict_a.milliseconds === date_dict_b.milliseconds));
+                && ((date_dict_a.milliseconds || 0) === (date_dict_b.milliseconds || 0)));
     },
 
     // A shortcut to create the date dict.

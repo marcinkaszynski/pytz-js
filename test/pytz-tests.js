@@ -207,5 +207,18 @@ pavlov.specify('pytz-js', function () {
                 Tz.localToDate('US/Pacific', dt, null);
             }).throwsException('NonExistentTimeError');
         });
+
+        it('Milliseconds are optional', function () {
+            var date = Tz.localToDate('UTC',
+                                      {year: 2011, month: 9, date: 12,
+                                       hours: 4, minutes: 48, seconds: 20});
+            assert(date.getUTCFullYear()).equals(2011);
+            assert(date.getUTCMonth()).equals(9);
+            assert(date.getUTCDate()).equals(12);
+            assert(date.getUTCHours()).equals(4);
+            assert(date.getUTCMinutes()).equals(48);
+            assert(date.getUTCSeconds()).equals(20);
+            assert(date.getUTCMilliseconds()).equals(0);
+        });
     });
 });
