@@ -27,16 +27,11 @@ Example:
 [... other time zones you need]
 <script>
     // Create a date representing the time.
-    // All fields in the dictionary are required except:
-    // - millisecond: defaults to 0
-    // - is_dst: is required only if you specify ambiguous times
-    //   during time change (when you switch off DST there is an hour
-    //   when every moment occurs twice, once before the switch and 
-    //   once after); if you do that without telling is_dst, localToDate
-    //   will throw "AmbiguousTimeError"
+    // All fields in the dictionary are required except milliseconds,
+    // which default to 0.
     var localTime = {year: 2011, month: 10, date: 11,
-                     hour: 22, minute: 34, second: 50,
-                     millisecond: 120};
+                     hours: 22, minutes: 34, seconds: 50,
+                     milliseconds: 120};
     var date = Tz.localToDate('Europe/Warsaw', localTime);
 
     // Note: date.getHours(), date.getDays() etc WILL BE DIFFERENT
@@ -49,6 +44,19 @@ Example:
     var localTime_back = Tz.dateToLocal('Europe/Warsaw', date);
     
     // Now localTime_back == localTime.
+
+    // If you specify ambiguous times during time change (when you
+    // switch off DST there is an overlap when every local time occurs
+    // twice, once before the switch and once after); localToDate
+    // will throw "AmbiguousTimeError" unless you add a hint which 
+    // one you mean using the is_dst argument.
+    var dt = Tz.dict(2004, 9, 31, 2, 0, 0, 0);
+
+    var loc_dt1 = Tz.localToDate('Europe/Amsterdam', dt, true);
+    // loc_dt1.getUTCHours() == 0
+
+    var loc_dt2 = Tz.localToDate('Europe/Amsterdam', dt, false);
+    // loc_dt2.getUTCHours() == 1
 </script>
 
 NOTES:
