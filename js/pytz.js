@@ -208,8 +208,11 @@ var Tz = {
     },
 
     getTzInfo: function (tzname) {
-        // TODO: raise an exception on missing tz
-        return Tz.timezones[tzname];
+        var tzinfo = Tz.timezones[tzname];
+        if (tzinfo === undefined) {
+            throw "UnknownTimezoneError";
+        }
+        return tzinfo;
     },
 
     // Return the UTC part of date as a dictionary.

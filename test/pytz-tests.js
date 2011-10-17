@@ -221,4 +221,12 @@ pavlov.specify('pytz-js', function () {
             assert(date.getUTCMilliseconds()).equals(0);
         });
     });
+
+    describe('Tz.getTzInfo', function () {
+        it('Throws "UnknownTimezoneError" when necessary', function () {
+            assert(function () {
+                Tz.getTzInfo('No/Such/Timezone');
+            }).throwsException('UnknownTimezoneError');
+        });
+    });
 });
