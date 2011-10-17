@@ -14,7 +14,7 @@ You know you want to.
 The goal of this library is to make two things easy:
 
 - convert a Date to a chosen timezone,
-- build a Date based on local time in a chosen timezone.a
+- build a Date based on local time in a chosen timezone.
 
 The core idea is that the right way to store a timestamp is in a Date,
 as UTC, always.  Timestamps in other timezones are just presentation.
@@ -24,7 +24,8 @@ Example:
 <script src="{{ STATIC_URL }}js/pytz.js"></script>
 <script src="{{ STATIC_URL }}js/zones/Europe/Warsaw.js"></script>
 <script src="{{ STATIC_URL }}js/zones/America/New_york.js"></script>
-[... other time zones you need]
+[add time zones as needed; everything in pytz.all_timezones is supported]
+
 <script>
     // Create a date representing the time.
     // All fields in the dictionary are required except milliseconds,
