@@ -220,6 +220,7 @@ var Tz = {
         return {year: date.getUTCFullYear(),
                 month: date.getUTCMonth(),
                 date: date.getUTCDate(),
+                day: date.getUTCDay(),
                 hours: date.getUTCHours(),
                 minutes: date.getUTCMinutes(),
                 seconds: date.getUTCSeconds(),

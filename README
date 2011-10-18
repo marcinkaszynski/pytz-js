@@ -44,7 +44,8 @@ Example:
     // timezone:
     var localTime_back = Tz.dateToLocal('Europe/Warsaw', date);
     
-    // Now localTime_back == localTime.
+    // Now localTime_back is localTime + one more field, 'day',
+    // meaning the day of week (0=Sunday, 1=Monday, ...).
 
     // If you specify ambiguous times during time change (when you
     // switch off DST there is an overlap when every local time occurs

@@ -105,6 +105,24 @@ pavlov.specify('pytz-js', function () {
             assert(date.seconds).equals(0);
             assert(date.milliseconds).equals(0);
         });
+
+        it('Calculates day of week correctly - without crossing date line', function () {
+            // Tuesday
+            var date = Tz.dateToLocal('UTC',
+                                      new Date(Date.UTC(2011, 9, 18,
+                                                        2, 0, 0, 0)));
+            assert(date.date).equals(18);
+            assert(date.day).equals(2);
+        });
+
+        it('Calculates day of week correctly - with crossing date line', function () {
+            // Tuesday in UTC, Monday in America/New_York
+            var date = Tz.dateToLocal('America/New_York',
+                                      new Date(Date.UTC(2011, 9, 18,
+                                                        2, 0, 0, 0)));
+            assert(date.date).equals(17);
+            assert(date.day).equals(1);
+        });
     });
 
     describe('Tz.localToDate', function () {
