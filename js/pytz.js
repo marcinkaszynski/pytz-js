@@ -229,6 +229,11 @@ var Tz = {
 
     // Reverse of utcToDict.
     dictToUtc: function (date_dict, shift) {
+        if (isNaN(date_dict.year + date_dict.month + date_dict.date
+                  + date_dict.hours + date_dict.minutes + date_dict.seconds)) {
+            // You need to specify all those fields.  Only milliseconds are optional.
+            throw "MissingAttribute";
+        }
         return new Date(Date.UTC(date_dict.year,
                                  date_dict.month,
                                  date_dict.date,

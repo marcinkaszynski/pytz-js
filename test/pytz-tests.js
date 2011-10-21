@@ -238,6 +238,33 @@ pavlov.specify('pytz-js', function () {
             assert(date.getUTCSeconds()).equals(20);
             assert(date.getUTCMilliseconds()).equals(0);
         });
+
+        it('Fields other than milliseconds are obligatory', function () {
+            assert(function () {
+                Tz.localToDate('UTC', {month: 9, date: 12,
+                                       hours: 4, minutes: 48, seconds: 20});
+            }).throwsException('MissingAttribute');
+            assert(function () {
+                Tz.localToDate('UTC', {year: 2011, date: 12,
+                                       hours: 4, minutes: 48, seconds: 20});
+            }).throwsException('MissingAttribute');
+            assert(function () {
+                Tz.localToDate('UTC', {year: 2011, month: 9,
+                                       hours: 4, minutes: 48, seconds: 20});
+            }).throwsException('MissingAttribute');
+            assert(function () {
+                Tz.localToDate('UTC', {year: 2011, month: 9, date: 12,
+                                       minutes: 48, seconds: 20});
+            }).throwsException('MissingAttribute');
+            assert(function () {
+                Tz.localToDate('UTC', {year: 2011, month: 9, date: 12,
+                                       hours: 4, seconds: 20});
+            }).throwsException('MissingAttribute');
+            assert(function () {
+                Tz.localToDate('UTC', {year: 2011, month: 9, date: 12,
+                                       hours: 4, minutes: 48});
+            }).throwsException('MissingAttribute');
+        });
     });
 
     describe('Tz.getTzInfo', function () {
