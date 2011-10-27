@@ -24,11 +24,23 @@ def dump_tzinfo(tzname):
     if issubclass(type(tz), DstTzInfo):
         trans_times = []
         trans_info = []
+        last_pre_1970_idx = None
+
+        def convert_trans_info(idx):
+            (utcoffset, dstoffset, tzname) = tz._transition_info[idx]
+            return [delta_to_seconds(utcoffset), delta_to_seconds(dstoffset), tzname]
+
         for idx, tt in enumerate(tz._utc_transition_times):
             if tt.year >= 1970:
                 trans_times.append(int(date_to_unixts(tt)))
-                (utcoffset, dstoffset, tzname) = tz._transition_info[idx]
-                trans_info.append([delta_to_seconds(utcoffset), delta_to_seconds(dstoffset), tzname])
+                trans_info.append(convert_trans_info(idx))
+            else:
+                last_pre_1970_idx = idx
+
+        if last_pre_1970_idx is not None:
+            trans_times.insert(0, 0)
+            trans_info.insert(0, convert_trans_info(last_pre_1970_idx))
+
         return ("new Tz.DstTzInfo(%s,\n %s)"
                 % (trans_times, trans_info))
     else:

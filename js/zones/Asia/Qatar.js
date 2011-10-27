@@ -1,2 +1,2 @@
-Tz.addTzInfo('Asia/Qatar', new Tz.DstTzInfo([76190400],
- [[10800, 0, 'AST']]))
+Tz.addTzInfo('Asia/Qatar', new Tz.DstTzInfo([0, 76190400],
+ [[14400, 0, 'GST'], [10800, 0, 'AST']]))

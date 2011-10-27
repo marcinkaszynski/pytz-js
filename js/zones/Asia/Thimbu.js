@@ -1,2 +1,2 @@
-Tz.addTzInfo('Asia/Thimbu', new Tz.DstTzInfo([560025000],
- [[21600, 0, 'BTT']]))
+Tz.addTzInfo('Asia/Thimbu', new Tz.DstTzInfo([0, 560025000],
+ [[19800, 0, 'IST'], [21600, 0, 'BTT']]))
